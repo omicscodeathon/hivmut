@@ -1,0 +1,69 @@
+{
+  "name": "PR",
+  "refSequence": "PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLNF",
+  "length": 99,
+  "drugClasses": [
+    {
+      "name": "PI",
+      "hasSurveilDrugResistMutations": true,
+      "hasRxSelectedMutations": true,
+      "mutationTypes": [
+        "Major",
+        "Accessory",
+        "Other"
+      ],
+      "drugs": [
+        {
+          "name": "ATV",
+          "fullName": "atazanavir/r",
+          "displayAbbr": "ATV/r",
+          "__typename": "Drug"
+        },
+        {
+          "name": "DRV",
+          "fullName": "darunavir/r",
+          "displayAbbr": "DRV/r",
+          "__typename": "Drug"
+        },
+        {
+          "name": "FPV",
+          "fullName": "fosamprenavir/r",
+          "displayAbbr": "FPV/r",
+          "__typename": "Drug"
+        },
+        {
+          "name": "IDV",
+          "fullName": "indinavir/r",
+          "displayAbbr": "IDV/r",
+          "__typename": "Drug"
+        },
+        {
+          "name": "LPV",
+          "fullName": "lopinavir/r",
+          "displayAbbr": "LPV/r",
+          "__typename": "Drug"
+        },
+        {
+          "name": "NFV",
+          "fullName": "nelfinavir",
+          "displayAbbr": "NFV",
+          "__typename": "Drug"
+        },
+        {
+          "name": "SQV",
+          "fullName": "saquinavir/r",
+          "displayAbbr": "SQV/r",
+          "__typename": "Drug"
+        },
+        {
+          "name": "TPV",
+          "fullName": "tipranavir/r",
+          "displayAbbr": "TPV/r",
+          "__typename": "Drug"
+        }
+      ],
+      "__typename": "DrugClass"
+    }
+  ],
+  "__typename": "Gene"
+}

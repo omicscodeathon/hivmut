@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+matplotlib = "*"
+ipykernel = "*"
+rich = "*"
+biopython = "*"
+seaborn = "*"
+tqdm = "*"
+pysradb = "*"
+sierrapy = "*"
+polars = "*"
+geopandas = "*"
+scikit-learn = "*"
+scipy = "*"
+shell = "*"
+jsonpath-ng = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"

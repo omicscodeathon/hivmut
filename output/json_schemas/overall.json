@@ -1,0 +1,24 @@
+{
+  "allGenes": [],
+  "currentVersion": {},
+  "currentProgramVersion": {},
+  "report": {
+    "inputSequence": {},
+    "bestMatchingSubtype": {},
+    "availableGenes": [],
+    "mixtureRate": 0,
+    "mutations": [],
+    "unusualMutations": [],
+    "frameShifts": [],
+    "insertions": [],
+    "deletions": [],
+    "stopCodons": [],
+    "ambiguousMutations": [],
+    "apobecMutations": [],
+    "mutationPrevalences": [],
+    "algorithmComparison": [],
+    "drugResistance": [],
+    "alignedGeneSequences": [],
+    "__typename": "SequenceAnalysis"
+  }
+}

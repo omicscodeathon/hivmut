@@ -1,0 +1,6 @@
+data/hiv_fasta_files
+data/raw
+data/processed/africa_genome.csv
+Pipfile.lock
+output/Nigerian-Drug-Resistance/zipped\ files
+analysis/Nigerian-Drug-Resistance-Analysis
