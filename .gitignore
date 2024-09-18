@@ -4,3 +4,11 @@ data/processed/africa_genome.csv
 Pipfile.lock
 output/Nigerian-Drug-Resistance/zipped\ files
 analysis/Nigerian-Drug-Resistance-Analysis
+/data/raw/AFR-SSA-HIV.txt
+/.git/objects/pack/*.pack
+/data/raw/AFR-SSA-HIV.txt
+/.git/objects/pack/*.pack
+/data/raw/AFR-SSA-HIV.txt
+/.git/objects/pack/*.pack
+/data/raw/AFR-SSA-HIV.txt
+/.git/objects/pack/*.pack
