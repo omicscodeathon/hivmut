@@ -12,3 +12,5 @@ analysis/Nigerian-Drug-Resistance-Analysis
 /.git/objects/pack/*.pack
 /data/raw/AFR-SSA-HIV.txt
 /.git/objects/pack/*.pack
+/data/raw/AFR-SSA-HIV.txt
+/.git/objects/pack/*.pack
