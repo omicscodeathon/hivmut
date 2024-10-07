@@ -18,6 +18,11 @@ scikit-learn = "*"
 scipy = "*"
 shell = "*"
 jsonpath-ng = "*"
+plotnine = "*"
+geodatasets = "*"
+lifelines = "*"
+statsmodels = "*"
+descartes = "*"
 
 [dev-packages]
 

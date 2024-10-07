@@ -8,145 +8,334 @@ Overall JSON schemas
 
 ```json
 {
-  "allGenes": [],
-  "currentVersion": {},
-  "currentProgramVersion": {},
-  "report": {
-    "inputSequence": {},
-    "bestMatchingSubtype": {},
-    "availableGenes": [],
-    "mixtureRate": 0,
-    "mutations": [],
-    "unusualMutations": [],
-    "frameShifts": [],
-    "insertions": [],
-    "deletions": [],
-    "stopCodons": [],
-    "ambiguousMutations": [],
-    "apobecMutations": [],
-    "mutationPrevalences": [],
-    "algorithmComparison": [],
-    "drugResistance": [],
-    "alignedGeneSequences": [],
-    "__typename": "SequenceAnalysis"
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "inputSequence": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "type": "string"
+          },
+          "SHA512": {
+            "¬type": "string"
+          }
+        }
+      },
+      "strain": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "subtypeText": {
+        "type": "string"
+      },
+      "validationResults": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "level": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "level",
+            "message"
+          ]
+        }
+      },
+      "alignedGeneSequences": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "firstAA": {
+              "type": "number"
+            },
+            "lastAA": {
+              "type": "number"
+            },
+            "gene": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "length": {
+                  "type": "number"
+                }
+              }
+            },
+            "mutations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "consensus": {
+                    "type": "string"
+                  },
+                  "position": {
+                    "type": "number"
+                  },
+                  "AAs": {
+                    "type": "string"
+                  },
+                  "isInsertion": {
+                    "type": "boolean"
+                  },
+                  "isDeletion": {
+                    "type": "boolean"
+                  },
+                  "isApobecMutation": {
+                    "type": "boolean"
+                  },
+                  "isApobecDRM": {
+                    "type": "boolean"
+                  },
+                  "isUnusual": {
+                    "type": "boolean"
+                  },
+                  "isSDRM": {
+                    "type": "boolean"
+                  },
+                  "hasStop": {
+                    "type": "boolean"
+                  },
+                  "primaryType": {
+                    "type": "string"
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "consensus",
+                  "position",
+                  "AAs",
+                  "isInsertion",
+                  "isDeletion",
+                  "isApobecMutation",
+                  "isApobecDRM",
+                  "isUnusual",
+                  "isSDRM",
+                  "hasStop",
+                  "primaryType",
+                  "text"
+                ]
+              }
+            },
+            "SDRMs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ]
+              }
+            },
+            "alignedNAs": {
+              "type": "string"
+            },
+            "alignedAAs": {
+              "type": "string"
+            },
+            "prettyPairwise": {
+              "type": "object",
+              "properties": {
+                "positionLine": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "refAALine": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "alignedNAsLine": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "mutationLine": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "firstAA",
+            "lastAA",
+            "gene",
+            "mutations",
+            "SDRMs",
+            "alignedNAs",
+            "alignedAAs",
+            "prettyPairwise"
+          ]
+        }
+      },
+      "drugResistance": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "publishDate": {
+                  "type": "string"
+                }
+              }
+            },
+            "gene": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            },
+            "drugScores": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "drugClass": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "drug": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "displayAbbr": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "score": {
+                    "type": "number"
+                  },
+                  "level": {
+                    "type": "number"
+                  },
+                  "partialScores": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "mutations": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "text": {
+                                "type": "string"
+                              },
+                              "primaryType": {
+                                "type": "string"
+                              },
+                              "comments": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "triggeredAAs": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    },
+                                    "text": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "triggeredAAs",
+                                    "type",
+                                    "text"
+                                  ]
+                                }
+                              }
+                            },
+                            "required": [
+                              "text",
+                              "primaryType",
+                              "comments"
+                            ]
+                          }
+                        },
+                        "score": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "mutations",
+                        "score"
+                      ]
+                    }
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "drugClass",
+                  "drug",
+                  "score",
+                  "level",
+                  "partialScores",
+                  "text"
+                ]
+              }
+            }
+          },
+          "required": [
+            "version",
+            "gene",
+            "drugScores"
+          ]
+        }
+      }
+    },
+    "required": [
+      "inputSequence",
+      "strain",
+      "subtypeText",
+      "validationResults",
+      "alignedGeneSequences",
+      "drugResistance"
+    ]
   }
 }
 ```
-
-However, here is the schema for this particular overall data.
-
-```txt
-allGenes: list
-    []: list (empty)
-currentVersion: dict
-currentProgramVersion: dict
-report: dict
-    inputSequence: dict
-    bestMatchingSubtype: dict
-    availableGenes: list
-        []: list (empty)
-    mixtureRate: str
-        int
-    mutations: list
-        []: list (empty)
-    unusualMutations: list
-        []: list (empty)
-    frameShifts: list
-        []: list (empty)
-    insertions: list
-        []: list (empty)
-    deletions: list
-        []: list (empty)
-    stopCodons: list
-        []: list (empty)
-    ambiguousMutations: list
-        []: list (empty)
-    apobecMutations: list
-        []: list (empty)
-    mutationPrevalences: list
-        []: list (empty)
-    algorithmComparison: list
-        []: list (empty)
-    drugResistance: list
-        []: list (empty)
-    alignedGeneSequences: list
-        []: list (empty)
-    __typename: str
-        str
-```
-
-Now let us go into details for the other parts of the json data.
-
--	Input sequence is just information about the sequence that we put in for analysis
--	Best matching subtype is the best subtype that the data came out to be. The stanford HIV DB runs analysis on the data and gives the particular subtype of this with the probability of its assurance.
--	The available genes talks about the genes that the algorithm finds in the nucleotide sequence that was put into it. It has the following structure.
-
-	```txt
-	name: str
-	str
-	__typename: str
-	str
-	```
-
-A function that I suppose will be useful to get the available genes in this inputSequence
-
-```python
-availableGenes = [
-{
-"name":"gag",
-"__typename":"Gene"
-},
-{
-"name":"CA",
-"__typename":"Gene"
-},
-{
-"name":"pol",
-"__typename":"Gene"
-},
-{
-"name":"PR",
-"__typename":"Gene"
-},
-{
-"name":"RT",
-"__typename":"Gene"
-}
-]
-
-genes = [gene.name for gene in availableGenes]
-
-# Output should be ['gag', 'CA', 'pol', 'PR', 'RT']
-```
-
--	The mixtureRate must be something I don't know about the genomes.
--	The mutation aspect contains information on the gene and the mutation that occurs in the gene. It has multiple copies of this kind of information.
-
-	```json
-	{
-	"gene":{
-	"name":"PR",
-	"__typename":"Gene"
-	},
-	"text":"I13V",
-	"__typename":"Mutation"
-	},
-	```
-
-We can access the necessary information from it by using the following line of code
-
-```python
-geneMutation = {dict(mutation.gene.name, mutation.text) for mutation in mutations }
-```
-
--	Then we have the following. They are not so important but they can be present.
-
-	```json
-	"unusualMutations":[],
-	"frameShifts":[],
-	"insertions":[],
-	"deletions":[],
-	"stopCodons":[],
-	"ambiguousMutations":[],
-	"apobecMutations":[]
-	```
