@@ -1,221 +1,164 @@
-Genomic Landscape of HIV Drug Resistance in Nigeria: Identifying Mutations and Conserved Regions for Targeted Therapeutics
---------------------------------------------------------------------------------------------------------------------------
+Genomic Landscape of HIV Drug Resistance in Africa: Identifying Mutations and Resistance Patterns in the **pol** Gene (1990–2024)
+=================================================================================================================================
 
-### Project Overview
+### **Project Overview**
 
-This project aims to analyze genetic variations in HIV samples from Nigeria to identify commonly mutated genes, understand gene variations, determine conserved genome regions, and focus on mutations associated with drug resistance. The goal is to inform potential therapeutic targets.
+This project investigates HIV drug resistance mutations within the **pol** gene across African countries from 1990 to 2024. The **pol** gene, encoding critical enzymes like reverse transcriptase, protease, and integrase, plays a central role in antiretroviral therapy (ART) effectiveness. Over the decades, as ART usage increased, particularly in Sub-Saharan Africa, resistance mutations emerged, challenging the fight against HIV.
 
-### Objective
+We aim to conduct a time-series analysis of HIV-1 sequences from the Los Alamos National Laboratory (LANL) HIV Sequence Database. This analysis will help us identify drug resistance mutations, assess their evolution over time, and explore how ART introduction and scale-up contributed to the development of cross-resistance between drugs.
 
--	Assess the drug resistance in HIV genomes over time and their significance
--	Finding out new motifs in HIV genome samples that have been conserved over the period of some years.
--	This will help us make generalisations on the current state of therapies and the future of the therapies in this context.
+### **Project Goals**
 
-	### Table of Contents
+1.	**Drug Resistance Mutation Identification**: Identify the most common HIV-1 drug resistance mutations in the **pol** gene, with a particular focus on the reverse transcriptase (RT), protease (PR), and integrase (IN) regions.
 
-1.	[Data Acquisition](#data-acquisition)
-2.	[Quality Control and Preprocessing](#quality-control-and-preprocessing)
-3.	[Read Alignment and Variant Calling](#read-alignment-and-variant-calling)
-4.	[Functional Annotation of Assembled Genomes](#functional-annotation-of-assembled-genomes)
-5.	[Genome Alignment and Variant Detection](#genome-alignment-and-variant-detection)
-6.	[Identification of Drug Resistance Mutations](#identification-of-drug-resistance-mutations)
-7.	[Data Cleaning and Statistical Analysis](#data-cleaning-and-statistical-analysis)
-8.	[Visualization](#visualization)
-9.	[Phylogenetic Analysis](#phylogenetic-analysis)
-10.	[Identification of Conserved Regions](#identification-of-conserved-regions)
-11.	[Report Generation](#report-generation)
+2.	**Time-Series Analysis**: Perform time-series decomposition of the mutation data, segmenting it into 5-year intervals, and track the impact of ART scale-ups and policy changes on the prevalence of these mutations.
 
-### Data Acquisition
+3.	**Geographic Variability**: Analyze drug resistance patterns across different African regions to understand regional differences in mutation prevalence and drug efficacy.
 
--	**Source:** Public repositories such as Los Alamos HIV Database, Sequence Read Archive, and NCBI GenBank.
--	**Data Type:** Assembled RNA genomes of HIV-1, focusing on all subtypes, especially CRF02_AG and G.
+4.	**COVID-19 Impact**: Assess how the COVID-19 pandemic influenced ART treatment disruptions, contributing to resistance development in some regions.
 
-### Quality Control and Preprocessing
+### **Features**
 
--	**Tools:** nf-core/viralrecon pipeline
--	**Steps:**
-	1.	Perform quality control assessments on the assembled genomes using the nf-core/viralrecon pipeline.
-	2.	Assess completeness, contiguity, and accuracy.
-	3.	Generate reports to identify and remove low-quality assemblies.
+-	**Data Parsing & Analysis**: JSON data from the **SierraPy** tool is parsed to extract key mutation and drug resistance information. This includes drug resistance scores, gene alignment data, mutation descriptions, and strain metadata.
 
-### Read Alignment and Variant Calling
+-	**Visualizations**: Generate geographical heatmaps of mutation prevalence by region, mutation time series graphs, and drug resistance score timelines to better understand the dynamics of HIV drug resistance across Africa.
 
--	**Tools:** BWA, iVar (within nf-core/viralrecon pipeline)
--	**Steps:**
-	1.	Align the processed reads to a reference HIV genome using BWA within the nf-core/viralrecon pipeline.
-	2.	Identify genetic variations (single nucleotide polymorphisms, insertions, deletions) using variant calling tools like iVar.
+-	**Downstream Analysis**: Includes cross-resistance analysis between drug classes (e.g., NNRTIs, NRTIs, INSTIs) to explore how mutations in one class affect susceptibility to other classes of antiretroviral drugs.
 
-### Functional Annotation of Assembled Genomes
+### **Project Structure**
 
--	**Tools:** SnpEff
--	**Steps:**
-	1.	Annotate the genomes to identify and classify genes.
-	2.	Predict the functional effects of genetic variants using SnpEff.
+-	**Data Acquisition**:
 
-### Genome Alignment and Variant Detection
+	-	HIV sequences were retrieved from the **LANL HIV Sequence Database** spanning the years 1990–2024, focusing on sequences containing full or near-complete **pol** gene coverage.
+	-	Metadata related to patient history, country of origin, sampling year, and subtype was also extracted to contextualize the mutation data.
 
--	**Tools:** Parsnp, Harvest Suite, Gingr (for visualization)
--	**Steps:**
-	1.	Align the assembled genomes against a reference HIV-1 genome using Parsnp.
-	2.	Visualize the alignment using Gingr to identify genomic variations.
-	3.	Use the Harvest tools to extract and list variants.
+-	**Data Preprocessing**:
 
-### Identification of Drug Resistance Mutations
+	-	Sequences were cleaned to remove gaps and ensure that only high-quality sequences were retained for analysis. Sequences flagged as problematic were excluded.  
 
--	**Tools:** HIVdb (Stanford University HIV Drug Resistance Database)
--	**Steps:**
-	1.	Cross-reference identified variants with known drug resistance mutations.
-	2.	Annotate the VCF with drug resistance information using HIVdb.
+-	**Mutation Identification**:
 
-### Data Cleaning and Statistical Analysis
+	-	The **SierraPy** command-line tool was used to extract drug resistance mutations and drug resistance scores. JSON outputs from **SierraPy** are parsed and processed to extract key mutation data and drug resistance profiles.
 
--	**Tools:** R (tidyverse, dplyr)
--	**Steps:**
-	1.	Clean and preprocess variant data to ensure consistency and accuracy.
-	2.	Perform statistical analysis to identify significant mutations and their frequencies.
-	3.	Use statistical methods to correlate mutations with drug resistance.
+-	**Time-Series and Geographic Analysis**:
 
-### Visualization
+	-	The sequences were divided into 5-year intervals (e.g., 1990–1994, 1995–1999, etc.) to track the evolution of resistance mutations over time.
+	-	Geographic clustering of mutations was done to identify regions where resistance patterns are more severe.
 
--	**Tools:** R (ggplot2)
--	**Steps:**
-	1.	Create visualizations of mutation frequencies and distributions.
-	2.	Generate plots showing correlations between mutations and drug resistance.
-
-### Phylogenetic Analysis
-
--	**Tools:** IQ-TREE, R (phyloseq, ggtree)
--	**Steps:**
-	1.	Construct phylogenetic trees using IQ-TREE to study evolutionary relationships among HIV strains.
-	2.	Analyze the evolutionary dynamics and geographical distribution of HIV strains in Nigeria.
-
-### Identification of Conserved Regions
-
--	**Tools:** MEME Suite, custom R scripts
--	**Steps:**
-	1.	Identify conserved regions across different HIV strains using MEME Suite.
-	2.	Focus on regions that are potential targets for therapeutic interventions.
-
-### Report Generation
-
--	**Contents:**
-	1.	Comprehensive report detailing genetic variations and drug resistance mutations.
-	2.	Database of identified mutations and their frequencies.
-	3.	Phylogenetic trees illustrating evolutionary relationships.
-	4.	Identified conserved regions and potential therapeutic targets.
-	5.	Visualizations for publication and presentations. ---
-
-### Workflow Diagram
+### **Workflow Diagram**
 
 ```mermaid
-%%{ init: {'theme': 'base', 'themeVariables': { 'edgeStyle': 'straight' }}}%%
-graph TD;
-    A[Data Acquisition] -->|1| B[nf-core/viralrecon Pipeline];
-    B -->|2| C[Quality Control];
-    C -->|3| D[High-Quality Assembled Genomes];
-    D -->|4| E[BWA Read Alignment];
-    E -->|5| F[Aligned Reads];
-    F -->|6| G[iVar Variant Calling];
-    G -->|7| H[Identified Variants];
-    H -->|8| I[SnpEff Functional Annotation];
-    I -->|9| J[Annotated Variants];
-    J -->|10| K[Parsnp Genome Alignment];
-    K -->|11| L[Harvest Suite Variant Detection];
-    L -->|12| M[Gingr Visualization];
-    M -->|13| N[Variant List];
-    N -->|14| O[Cross-reference with HIVdb];
-    O -->|15| P[Annotated VCF with Drug Resistance Info];
-    P -->|16| Q[R Data Cleaning];
-    Q -->|17| R[Cleaned Variant Data];
-    R -->|18| S[Statistical Analysis];
-    S -->|19| T[Mutation Frequencies and Correlations];
-    T -->|20| U[ggplot2 Visualization];
-    U -->|21| V[Plots and Graphs];
-    R -->|22| W[IQ-TREE Phylogenetic Analysis];
-    W -->|23| X[Phylogenetic Trees];
-    X -->|24| Y[R Phyloseq Analysis];
-    Y -->|25| Z[Evolutionary Dynamics and Geographical Distribution];
-    Z -->|26| AA[MEME Suite Analysis];
-    AA -->|27| AB[Identification of Conserved Regions];
-    AB -->|28| AC[Potential Therapeutic Targets];
-    V -->|29| AD[Comprehensive Report];
-    X -->|30| AD;
-    AC -->|31| AD;
-    T -->|32| AD;
-    AD -->|33| AE[Final Report for Publication and Presentation];
+graph TD
+    A[Data Acquisition] -->|1.1| B[LANL HIV Sequence Database]
+    A -->|1.2| C[Sequence Metadata Collection]
 
-    %% Define styles
-    classDef dataAcq fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef pipeline fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef qualityControl fill:#fcf,stroke:#333,stroke-width:2px;
-    classDef alignment fill:#cfc,stroke:#333,stroke-width:2px;
-    classDef variantCalling fill:#ccf,stroke:#333,stroke-width:2px;
-    classDef annotation fill:#ffc,stroke:#333,stroke-width:2px;
-    classDef visualization fill:#fcc,stroke:#333,stroke-width:2px;
-    classDef analysis fill:#c9f,stroke:#333,stroke-width:2px;
-    classDef report fill:#9cf,stroke:#333,stroke-width:2px;
+    B --> D[FASTA Sequences]
+    C --> E[Metadata: Subtype, Year, Country, etc.]
 
-    %% Apply styles to nodes
-    class A dataAcq;
-    class B pipeline;
-    class C qualityControl;
-    class D pipeline;
-    class E alignment;
-    class F pipeline;
-    class G variantCalling;
-    class H pipeline;
-    class I annotation;
-    class J pipeline;
-    class K pipeline;
-    class L pipeline;
-    class M visualization;
-    class N pipeline;
-    class O pipeline;
-    class P pipeline;
-    class Q analysis;
-    class R pipeline;
-    class S pipeline;
-    class T pipeline;
-    class U pipeline;
-    class V pipeline;
-    class W pipeline;
-    class X pipeline;
-    class Y pipeline;
-    class Z pipeline;
-    class AA pipeline;
-    class AB pipeline;
-    class AC pipeline;
-    class AD report;
-    class AE report;
+    D --> F[Data Preprocessing]
+    E --> F
 
-    linkStyle default interpolate basis;
+    F --> G[Mutation Identification]
+    G -->|SierraPy| H[Generate JSON Output]
 
+    H --> I[JSON Parsing & Extraction]
+    I --> J[Parsed Data]
+    I --> K[Drug Resistance Mutations]
+    I --> L[Subtype Information]
+    I --> M[Gene Information]
+    
+    J --> N[Time-Series Analysis]
+    J --> O[Geographical Analysis]
+    
+    N --> P[Time-Series Decomposition]
+    O --> Q[Map Generation with Plotnine]
+    
+    P --> R[Drug Resistance Trends by Year]
+    Q --> S[Distribution Maps of Subtypes and Mutations]
+    
+    subgraph Data Outputs
+        T1[general_mutations.csv]
+        T2[drug_resistance_mutations.csv]
+        T3[gene_info.csv]
+        T4[pretty_pairwise.csv]
+        T5[validation_results.csv]
+        T6[accessions.txt]
+    end
+    
+    J --> Data Outputs
+    P --> R
+    O --> Q
 ```
 
+### **File Structure**
+
+1.	**`parse_sierra_json.py`**: This script processes the JSON output from **SierraPy**, extracting drug resistance mutations, gene information, and resistance scores, then saving the data into CSV files.
+
+2.	**`time_series_analysis.py`**: This script performs time-series analysis of the mutation data, allowing users to track the progression of drug resistance mutations across different time periods.
+
+3.	**`geo_analysis.py`**: This script generates maps showing the distribution of drug resistance mutations across different African countries. It integrates **GeoPandas** and **Plotnine** for map visualizations.
+
+4.	**Data Output Files**:
+
+	-	`general_mutations.csv`: Lists general mutations across all sequences.
+	-	`drug_resistance_mutations.csv`: Drug resistance mutations and their scores for different ART drugs.
+	-	`gene_info.csv`: Details on aligned genes (e.g., gene length, aligned regions).
+	-	`pretty_pairwise.csv`: Nucleotide and amino acid alignments from the sequence data.
+	-	`validation_results.csv`: Validation data on sequence quality.
+	-	`accessions.txt`: List of accession IDs for all sequences processed.
+
+### **Usage Instructions**
+
+1.	**Prerequisites**: Install the following Python libraries:
+	-	`biopython`
+	-	`pandas`
+	-	`plotnine`
+	-	`geopandas`
+	-	`tqdm`
+	-	`seaborn`
+	-	`matplotlib`
+	-	`lifelines`
+	-	`statsmodel`
+
+You will also need **SierraPy** to generate the initial JSON data from HIV-1 FASTA files.
+
+1.	**Running the Scripts**:
+
+	-	**Step 1**: Use `SierraPy` to generate JSON output from your FASTA files.
+	-	**Step 2**: Run `parse_sierra_json.py` to process the JSON files and generate CSV outputs.
+
+		```bash
+		python parse_sierra_json.py input_dir output_dir
+		```
+
+	-	**Step 3**: Use `time_series_analysis.py` to perform time-series decomposition.
+
+	-	**Step 4**: Use `geo_analysis.py` to generate mutation distribution maps.
+
+### **Future Work**
+
+1.	**Advanced Resistance Analysis**: Further exploration into cross-resistance between drug classes will help refine our understanding of HIV mutation pathways and their impact on ART efficacy.
+
+2.	**Visualization Enhancements**: We plan to integrate more advanced visualization tools to depict the spread and evolution of drug resistance mutations over time.
+
+3.	**Machine Learning Models**: Incorporate predictive models to forecast resistance trends based on the introduction of new ART drugs and other external factors like the COVID-19 pandemic.
+
 ---
 
-### Tools Summary
-
--	**Quality Control and Preprocessing:** nf-core/viralrecon pipeline
--	**Read Alignment:** BWA (within nf-core/viralrecon pipeline)
--	**Variant Calling:** iVar (within nf-core/viralrecon pipeline)
--	**Genome Annotation:** SnpEff
--	**Genome Alignment:** Parsnp, Gingr
--	**Variant Detection:** Harvest tools
--	**Drug Resistance Analysis:** HIVdb
--	**Statistical Analysis:** R (tidyverse, dplyr)
--	**Visualization:** R (ggplot2)
--	**Phylogenetic Analysis:** IQ-TREE, R (phyloseq, ape)
--	**Conserved Regions Identification:** MEME Suite, custom R scripts
-
----
-
-Team and Project Contributors
------------------------------
+### **Contributors**
 
 -	Halleluyah Darasimi Oludele
--	Jonas Ibekwe Paul
--	Maame Esi Annor-Apaflo
--	Julien A. Nguinkal
 -	Koney Shardow Abdul Latif
+-	Maame Esi Annor-Apaflo
+-	Julien Nguinkal
 -	Phazha Bushe Baeti
+-	Jonas Paul Ibekwe
+
+### **Acknowledgments**
+
+We acknowledge the **Los Alamos National Laboratory (LANL)** for providing HIV-1 sequence data, and the **Stanford HIVDB** team for making their drug resistance interpretation tools available.
+
+### **References**
+
+-	LANL HIV Sequence Database: https://www.hiv.lanl.gov/
+-	Stanford HIVDB: https://hivdb.stanford.edu/  
