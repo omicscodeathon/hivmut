@@ -76,18 +76,15 @@ graph TD
     P --> R[Drug Resistance Trends by Year]
     Q --> S[Distribution Maps of Subtypes and Mutations]
     
-    subgraph Data Outputs
-        T1[general_mutations.csv]
-        T2[drug_resistance_mutations.csv]
-        T3[gene_info.csv]
-        T4[pretty_pairwise.csv]
-        T5[validation_results.csv]
-        T6[accessions.txt]
-    end
-    
-    J --> Data Outputs
-    P --> R
-    O --> Q
+    %% Data Outputs Section
+    J --> T1[general_mutations.csv]
+    J --> T2[drug_resistance_mutations.csv]
+    J --> T3[gene_info.csv]
+    J --> T4[pretty_pairwise.csv]
+    J --> T5[validation_results.csv]
+    J --> T6[accessions.txt]
+
+  
 ```
 
 ### **File Structure**
